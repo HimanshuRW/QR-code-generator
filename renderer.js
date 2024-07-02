@@ -4,11 +4,14 @@ const qrColorInput = document.getElementById('qrColor');
 const bgColorInput = document.getElementById('bgColor');
 const logoSizeInput = document.getElementById('logoSize');
 const logoMarginInput = document.getElementById('logoMargin');
+const logoFileNameInput = document.getElementById('logoFileName');
+const urlInput = document.getElementById('urlInput'); // New input field for URL
 const qrCodeDisplay = document.getElementById('qrCodeDisplay');
 
 function updateQRCode() {
-  const url = 'https://yourwebsite.com/table/123'; // Replace with your URL
-  const logoPath = './input.svg'; // Replace with your logo path
+  const url = urlInput.value.trim(); // Get URL input
+  const logoFileName = logoFileNameInput.value.trim(); // Get logo file name input
+  const logoPath = `./${logoFileName}`; // Construct logo path
 
   const qrOptions = {
     errorCorrectionLevel: 'H',
@@ -39,10 +42,11 @@ qrColorInput.addEventListener('input', updateQRCode);
 bgColorInput.addEventListener('input', updateQRCode);
 logoSizeInput.addEventListener('input', updateQRCode);
 logoMarginInput.addEventListener('input', updateQRCode);
+logoFileNameInput.addEventListener('input', updateQRCode);
+urlInput.addEventListener('input', updateQRCode); // Listen for changes in URL input
 
 // Listen for response from main process
 ipcRenderer.on('qrCodeUpdated', (event, imagePath) => {
   console.log("imagePath : " + imagePath);
-  // qrCodeDisplay.src = `output.png`;
   qrCodeDisplay.src = `file://${imagePath}`;
 });

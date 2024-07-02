@@ -1,48 +1,92 @@
+/* Reset default margin and padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Basic styling for the body */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-  }
-  
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+}
+
+/* Container holding controls and QR display */
+.container {
+  max-width: 800px;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between; /* Align items with space between them */
+}
+
+/* Styling for the controls section */
+.controls {
+  width: 45%; /* Set width for controls section */
+}
+
+/* Title for QR code settings */
+.controls h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333333;
+}
+
+/* Label styles for form inputs */
+.controls label {
+  margin-top: 13px;
+  display: block;
+  font-size: 14px;
+  color: #555555;
+}
+
+/* Input styles */
+.controls input[type="text"],
+/* .controls input[type="color"], */
+.controls input[type="range"] {
+  width: calc(100% - 16px); /* Adjust width to fit inside container with padding */
+  padding: 8px;
+  margin-top: 4px;
+  font-size: 14px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  outline: none;
+}
+.controls input[type="color"] {
+  width: calc(100% - 16px); /* Adjust width to fit inside container with padding */
+  /* padding: 8px;
+  margin-top: 4px; */
+  /* font-size: 14px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  outline: none; */
+}
+
+/* Styling for QR display section */
+.qr-display {
+  width: 50%; /* Set width for QR display section */
+  text-align: center;
+}
+
+/* QR display image styles */
+.qr-display img {
+  max-width: 100%;
+  height: auto;
+  margin-top: 20px; /* Adjust spacing */
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
   .container {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 80%;
-    max-width: 800px;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    flex-direction: column; /* Stack items vertically on small screens */
+    align-items: center; /* Center align items */
   }
-  
-  .controls {
-    flex: 1;
-    padding-right: 20px;
+  .controls, .qr-display {
+    width: 100%; /* Full width on small screens */
+    margin-bottom: 20px; /* Add space between sections */
   }
-  
-  .qr-display {
-    flex: 1;
-    text-align: center;
-  }
-  
-  h2 {
-    margin-bottom: 10px;
-  }
-  
-  input[type="color"], input[type="range"] {
-    margin-bottom: 10px;
-    width: 100%;
-  }
-  
-  img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  }
-  
+}

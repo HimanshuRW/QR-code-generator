@@ -1,15 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>QR Code Generator</title>
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
   <div class="container">
     <div class="controls">
       <h2>QR Code Settings</h2>
+
+      <label for="logoFileName">Logo File Name:</label>
+      <input type="text" id="logoFileName" value="input.svg">
+
+      <label for="urlInput">URL:</label>
+      <input type="text" id="urlInput" value="https://yourwebsite.com/table/123">
+
       <label for="qrColor">QR Code Color:</label>
       <input type="color" id="qrColor" value="#0A74DA">
 
@@ -20,8 +29,9 @@
       <input type="range" id="logoSize" min="10" max="100" value="50">
 
       <label for="logoMargin">Logo Margin:</label>
-      <input type="range" id="logoMargin" min="5" max="50" value="20">
+      <input type="range" id="logoMargin" min="5" max="500" value="20">
     </div>
+
     <div class="qr-display">
       <h2>Generated QR Code</h2>
       <img id="qrCodeDisplay" src="" alt="QR Code">
@@ -29,4 +39,5 @@
   </div>
   <script src="renderer.js"></script>
 </body>
+
 </html>

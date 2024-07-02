@@ -41,6 +41,7 @@ async function generateQRCodeWithHighResLogo(url, logoPath, outputPath, options 
     // Create white background for the logo with margin
     const logoSize = Math.floor(qrMetadata.width * mergedOptions.logoSize);
     const margin = mergedOptions.logoMargin;
+    // const margin = 100;
     const logoWithBackground = await sharp({
       create: {
         width: logoSize + margin,
