@@ -35,15 +35,18 @@ async function generateQRCodeWithHighResLogo(url, logoPath, outputPath, options 
       })
       .toBuffer();
 
+    // Get background color from QR code
+    const bgColor = hexToRgb(mergedOptions.color.light);
+
     // Create white background for the logo with margin
     const logoSize = Math.floor(qrMetadata.width * mergedOptions.logoSize);
     const margin = mergedOptions.logoMargin;
-    const logoWithMargin = await sharp({
+    const logoWithBackground = await sharp({
       create: {
         width: logoSize + margin,
         height: logoSize + margin,
         channels: 4,
-        background: { r: 255, g: 255, b: 255, alpha: 1 } // White background
+        background: { r: bgColor.r, g: bgColor.g, b: bgColor.b, alpha: 1 } // Use QR code background color
       }
     })
       .composite([{ input: logoBuffer, top: margin / 2, left: margin / 2 }])
@@ -54,7 +57,7 @@ async function generateQRCodeWithHighResLogo(url, logoPath, outputPath, options 
     const compositeImage = await qrImage
       .composite([
         {
-          input: logoWithMargin,
+          input: logoWithBackground,
           top: Math.floor((qrMetadata.height - logoSize - margin) / 2),
           left: Math.floor((qrMetadata.width - logoSize - margin) / 2)
         }
@@ -70,3 +73,18 @@ async function generateQRCodeWithHighResLogo(url, logoPath, outputPath, options 
 }
 
 module.exports = { generateQRCodeWithHighResLogo };
+
+
+function hexToRgb(hex) {
+  // Remove # if it's included
+  hex = hex.replace('#', '');
+
+  // Parse hexadecimal value to RGB
+  const bigint = parseInt(hex, 16);
+  const r = (bigint >> 16) & 255;
+  const g = (bigint >> 8) & 255;
+  const b = bigint & 255;
+
+  // Return an object with RGB values
+  return { r, g, b };
+}
