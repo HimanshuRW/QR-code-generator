@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR Code Generator</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="controls">
+      <h2>QR Code Settings</h2>
+      <label for="qrColor">QR Code Color:</label>
+      <input type="color" id="qrColor" value="#0A74DA">
+
+      <label for="bgColor">Background Color:</label>
+      <input type="color" id="bgColor" value="#FFFFFF">
+
+      <label for="logoSize">Logo Size:</label>
+      <input type="range" id="logoSize" min="10" max="100" value="50">
+
+      <label for="logoMargin">Logo Margin:</label>
+      <input type="range" id="logoMargin" min="5" max="50" value="20">
+    </div>
+    <div class="qr-display">
+      <h2>Generated QR Code</h2>
+      <img id="qrCodeDisplay" src="" alt="QR Code">
+    </div>
+  </div>
+  <script src="renderer.js"></script>
+</body>
+</html>
